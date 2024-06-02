@@ -60,7 +60,11 @@
 (define installation-os-nonfree
   (operating-system
     (inherit installation-os)
-    (kernel linux)
+    (kernel (corrupt-linux linux-libre-6.9
+                         #:configs '("CONFIG_MT76_CORE=y"
+                                     "CONFIG_MT76x0U=y"
+                                     "CONFIG_WLAN=y"
+                                     "CONFIG_WLAN_VENDOR_MEDIATEK=y")))
     (firmware (list linux-firmware))
 
     ;; Add the 'net.ifnames' argument to prevent network interfaces
