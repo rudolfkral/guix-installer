@@ -38,7 +38,8 @@ jobs:
           # This is necessary to authorize the substitute server
           wget https://substitutes.nonguix.org/signing-key.pub
           mv signing-key.pub nonguix-signing-key.pub
-          sudo guix archive --authorize < nonguix-signing-key.pub
+          sudo chmod 777 /etc/guix/acl
+          guix archive --authorize < nonguix-signing-key.pub
 
       - name: Build ISO
         run: |
